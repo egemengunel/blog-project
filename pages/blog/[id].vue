@@ -36,7 +36,7 @@
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-import { useRoute } from "vue-router";
+//import { useRoute } from "vue-router";
 
 //interface for the page
 interface BlogPost {
@@ -46,8 +46,8 @@ interface BlogPost {
   content: string;
 }
 
-const route = useRoute();
-const blogId = route.params.id as string;
+//const route = useRoute();
+//const blogId = route.params.id as string;
 
 const blogPost = ref<BlogPost | null>(null);
 const formattedContent = computed(() => {

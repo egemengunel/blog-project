@@ -22,7 +22,7 @@
         <li>
           <NuxtLink
             to="/create"
-            class="text-lg text-white font-semibold tracking-tight"
+            class="text-lg text-white font-semibold tracking-tight hover:text-gray-600 transition-colors"
           >
             Create
           </NuxtLink>
@@ -38,10 +38,12 @@ interface Link {
   to: string;
 }
 
-const { links } = withDefaults(defineProps<{ links?: Link[] }>(), {
-  links: () => [
+const {
+  links = [
     { label: "Home", to: "/" },
     { label: "All Blogs", to: "/allBlogs" },
   ],
-});
+} = defineProps<{
+  links?: Link[];
+}>();
 </script>

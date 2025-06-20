@@ -4,7 +4,7 @@
       class="absolute top-0 -z-10 w-full h-80 bg-slate-700 overflow-hidden flex flex-col items-center justify-center text-center"
     >
       <h1 class="text-white text-4xl font-semibold font['Inter'] mb-8">
-        Weclome To Blogful!
+        Weclome To Blogie!
       </h1>
       <p class="text-white text-2xl font-normal font['Inter'] max-w-xl px-4">
         Discover, write and learn from the latest blogs
