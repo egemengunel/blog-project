@@ -18,9 +18,38 @@
             Discover Latest Blogs
           </h2>
           <div
-            class="grid grid-cols-1 sm:grid-cols2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+            class="grid grid-cols-2 sm:grid-cols2 md:grid-cols-3 lg:grid-cols-4 gap-8"
           >
-            Cards will be in here
+            <cardView
+              title-text="This is a title"
+              subtitle="this is a prapagraph that gies below"
+              image-url="/images/sample-image.jpg"
+            />
+            <cardView
+              title-text="This is a title"
+              subtitle="this is a prapagraph that gies below"
+              image-url="/images/sample-image.jpg"
+            />
+            <cardView
+              title-text="This is a title"
+              subtitle="this is a prapagraph that gies below"
+              image-url="/images/sample-image.jpg"
+            />
+            <cardView
+              title-text="This is a title"
+              subtitle="this is a prapagraph that gies below"
+              image-url="/images/sample-image.jpg"
+            />
+            <cardView
+              title-text="This is a title"
+              subtitle="this is a prapagraph that gies below"
+              image-url="/images/sample-image.jpg"
+            />
+            <cardView
+              title-text="This is a title"
+              subtitle="this is a prapagraph that gies below"
+              image-url="/images/sample-image.jpg"
+            />
           </div>
         </div>
       </section>

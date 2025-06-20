@@ -1,6 +1,6 @@
 <template>
   <header
-    class="mt-4 pt-4 px-8 pb-4 bg-slate-700 rounded-[50px] ml-2 mr-2 relative z-10"
+    class="mt-4 pt-4 px-8 pb-4 bg-slate-700 rounded-[50px] ml-4 mr-4 relative z-10"
   >
     <nav>
       <ul class="flex flex-wrap gap-6 justify-between">

@@ -1,3 +1,47 @@
 <template>
-  <h1>AllBlogs</h1>
+  <div>
+    <section
+      class="absolute top-0 -z-10 w-full bg-slate-200 overflow-hidden py-16"
+    >
+      <div class="max-w-screen-xl mx-auto px-8">
+        <h2 class="text-black text-3xl font-bold font['Inter'] mb-8 mt-8">
+          Discover Latest Blogs
+        </h2>
+        <div
+          class="grid grid-cols-2 sm:grid-cols2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+        >
+          <cardView
+            title-text="This is a title"
+            subtitle="this is a prapagraph that gies below"
+            image-url="/images/sample-image.jpg"
+          />
+          <cardView
+            title-text="This is a title"
+            subtitle="this is a prapagraph that gies below"
+            image-url="/images/sample-image.jpg"
+          />
+          <cardView
+            title-text="This is a title"
+            subtitle="this is a prapagraph that gies below"
+            image-url="/images/sample-image.jpg"
+          />
+          <cardView
+            title-text="This is a title"
+            subtitle="this is a prapagraph that gies below"
+            image-url="/images/sample-image.jpg"
+          />
+          <cardView
+            title-text="This is a title"
+            subtitle="this is a prapagraph that gies below"
+            image-url="/images/sample-image.jpg"
+          />
+          <cardView
+            title-text="This is a title"
+            subtitle="this is a prapagraph that gies below"
+            image-url="/images/sample-image.jpg"
+          />
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
