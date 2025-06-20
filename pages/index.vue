@@ -24,37 +24,37 @@
               title-text="This is a title"
               subtitle="this is a prapagraph that gies below"
               image-url="/images/sample-image.jpg"
-              blogId="1"
+              blog-id="1"
             />
             <cardView
               title-text="This is a title"
               subtitle="this is a prapagraph that gies below"
               image-url="/images/sample-image.jpg"
-              blogId="1"
+              blog-id="2"
             />
             <cardView
               title-text="This is a title"
               subtitle="this is a prapagraph that gies below"
               image-url="/images/sample-image.jpg"
-              blogId="1"
+              blog-id="4"
             />
             <cardView
               title-text="This is a title"
               subtitle="this is a prapagraph that gies below"
               image-url="/images/sample-image.jpg"
-              blogId="1"
+              blog-id="5"
             />
             <cardView
               title-text="This is a title"
               subtitle="this is a prapagraph that gies below"
               image-url="/images/sample-image.jpg"
-              blogId="1"
+              blog-id="6"
             />
             <cardView
               title-text="This is a title"
               subtitle="this is a prapagraph that gies below"
               image-url="/images/sample-image.jpg"
-              blogId="1"
+              blog-id="7"
             />
           </div>
         </div>
