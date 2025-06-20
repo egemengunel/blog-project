@@ -2,7 +2,7 @@
   <div class="relative w-64 h-72 rounded-2xl overflow-hidden shadow-lg">
     <div
       class="absolute inset-0 bg-cover bg-center"
-      :style="{ backgroundImage: 'url(\'' + 'imageUrl' + '\')' }"
+      :style="{ backgroundImage: 'url(\'' + imageUrl + '\')' }"
     />
 
     <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent">
@@ -10,10 +10,10 @@
         <h3
           class="text-white text-base font-bold font['Inter'] line-clamp-2 mb-2"
         >
-          Title Text Will be Placed Here
+          {{ props.titleText }}
         </h3>
         <p class="text-white text-xs font-normal font['Inter'] line-clamp-2">
-          Paragraph text will appear here and have text
+          {{ props.subtitle }}
         </p>
       </div>
     </div>
@@ -21,10 +21,18 @@
 </template>
 
 <script lang="ts" setup>
-// const props = defineProps({
-//   imageUrl: {
-//     type: String,
-//     required: true,
-//   },
-// });
+const props = defineProps({
+  imageUrl: {
+    type: String,
+    required: true,
+  },
+  titleText: {
+    type: String,
+    required: true,
+  },
+  subtitle: {
+    type: String,
+    required: true,
+  },
+});
 </script>
