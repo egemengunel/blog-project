@@ -51,10 +51,10 @@
         >
           <textarea
             ref="blogContent"
+            v-model="entryText"
             class="w-full h-full p-4 bg-transparent text-white placeholder-gray-400 focus:outline-none resize-none"
             placeholder="Enter Your Text Here"
-            v-model="entryText"
-          ></textarea>
+          />
         </div>
       </div>
     </section>
