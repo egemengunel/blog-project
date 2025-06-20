@@ -4,5 +4,6 @@
     <headerView />
 
     <NuxtPage />
+    <cardView />
   </div>
 </template>
