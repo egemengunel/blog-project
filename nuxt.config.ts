@@ -2,5 +2,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/content', '@nuxt/eslint', '@nuxtjs/tailwindcss']
+  modules: ['@nuxt/content', '@nuxt/eslint', '@nuxtjs/tailwindcss', '@prisma/nuxt'],
+  experimental: {
+    componentIslands: true
+  },
 })

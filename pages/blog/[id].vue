@@ -35,9 +35,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
-//import { useRoute } from "vue-router";
-
 //interface for the page
 interface BlogPost {
   id: string;

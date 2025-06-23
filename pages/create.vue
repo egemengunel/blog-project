@@ -62,7 +62,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 const entryText = ref("");
 const preview = ref<string | null>(null);
 const blogContent = ref<HTMLTextAreaElement | null>(null);
