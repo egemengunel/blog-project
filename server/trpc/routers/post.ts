@@ -18,6 +18,13 @@ export const postRouter = router({
                     imgUrl: input.imgUrl ?? null,
                     title: input.title
             },
-        })
-    }),
+            }) 
+        }),
+      getAll: publicProcedure.query(async () => {
+                return prisma.post.findMany({
+                    orderBy: {
+                        createdAt: 'desc',
+                    },
+                })
+            })  
 })
