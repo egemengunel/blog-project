@@ -8,10 +8,11 @@
           <h1 class="text-black text-3xl font-bold mb-8 pt-8">Add an Entry</h1>
 
           <button
-            class="w-44 h-14 rounded-full bg-slate-500 text-white text-xl font-medium hover:bg-slate-600"
+            :disabled="isSubmitting"
+            class="w-44 h-14 rounded-full bg-slate-500 text-white text-xl font-medium hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed"
             @click="addEntry"
           >
-            Add
+            {{ isSubmitting ? "Posting" : "Add" }}
           </button>
         </div>
 
@@ -73,6 +74,7 @@
 <script lang="ts" setup>
 import { useNuxtApp } from "#app";
 
+const isSubmitting = ref(false);
 const entryText = ref("");
 const titleText = ref("");
 const preview = ref<string | null>(null);
@@ -96,14 +98,23 @@ const onFileChange = (event: Event) => {
 };
 
 const addEntry = async () => {
-  if (!entryText.value) return;
-  await $trpcClient.post.create.mutate({
-    content: entryText.value,
-    imgUrl: preview.value ?? null,
-    title: titleText.value,
-  });
-  //reset the fields
-  entryText.value = "";
-  preview.value = null;
+  if (isSubmitting.value || !entryText.value) return;
+  isSubmitting.value = true;
+  try {
+    await $trpcClient.post.create.mutate({
+      content: entryText.value,
+      imgUrl: preview.value ?? null,
+      title: titleText.value,
+    });
+    //reset the fields
+    entryText.value = "";
+    preview.value = null;
+    alert("Blog post added");
+  } catch (error) {
+    console.error("Failed to create post:", error);
+  } finally {
+    isSubmitting.value = false;
+    navigateTo("/");
+  }
 };
 </script>
