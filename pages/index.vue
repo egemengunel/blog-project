@@ -1,7 +1,7 @@
 <template>
   <div>
     <section
-      class="absolute top-0 -z-10 w-full h-80 bg-slate-700 overflow-hidden flex flex-col items-center justify-center text-center"
+      class="absolute top-0 z-0 w-full h-80 bg-slate-700 overflow-hidden flex flex-col items-center justify-center text-center"
     >
       <h1 class="text-white text-4xl font-semibold font['Inter'] mb-8">
         Weclome To Blogie!

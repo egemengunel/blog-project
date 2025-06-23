@@ -1,7 +1,7 @@
 <template>
   <div>
     <section
-      class="absolute top-0 -z-10 w-full bg-slate-200 overflow-hidden py-16"
+      class="absolute top-0 z-0 w-full bg-slate-200 overflow-hidden py-16"
     >
       <div class="max-w-screen-xl mx-auto px-8">
         <h2 class="text-black text-3xl font-bold font['Inter'] mb-8 mt-8">

@@ -1,7 +1,7 @@
 <template>
   <div>
     <section
-      class="absolute top-0 -z-10 w-full bg-slate-200 overflow-hidden py-16"
+      class="absolute top-0 z-0 w-full bg-slate-200 overflow-hidden py-16"
     >
       <div class="max-w-screen-xl mx-auto px-8">
         <div class="flex items-center justify-between">
@@ -9,6 +9,7 @@
 
           <button
             class="w-44 h-14 rounded-full bg-slate-500 text-white text-xl font-medium hover:bg-slate-600"
+            @click="addEntry"
           >
             Add
           </button>
@@ -45,10 +46,18 @@
         </label>
         <!-- text input areaa -->
 
-        <div
-          class="w-full h-64 bg-slate-600 rounded-3xl overflow-hidden mt-8"
-          @click="focusTextarea"
-        >
+        <!-- title -->
+        <div class="w-full h-32 bg-slate-400 rounded-3xl overflow-hidden mt-8">
+          <textarea
+            ref="titleContent"
+            v-model="titleText"
+            class="w-full h-full p-2 bg-transparent text=white placeholder-gray-600 focus:outline-none resize-none"
+            placeholder="Enter Title"
+          />
+        </div>
+
+        <!-- content -->
+        <div class="w-full h-64 bg-slate-600 rounded-3xl overflow-hidden mt-8">
           <textarea
             ref="blogContent"
             v-model="entryText"
@@ -62,9 +71,15 @@
 </template>
 
 <script lang="ts" setup>
+import { useNuxtApp } from "#app";
+
 const entryText = ref("");
+const titleText = ref("");
 const preview = ref<string | null>(null);
 const blogContent = ref<HTMLTextAreaElement | null>(null);
+const titleContent = ref<HTMLTextAreaElement | null>(null);
+
+const { $trpcClient } = useNuxtApp();
 
 const onFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
@@ -80,15 +95,15 @@ const onFileChange = (event: Event) => {
   }
 };
 
-const focusTextarea = () => {
-  if (blogContent.value) {
-    blogContent.value.focus();
-  }
+const addEntry = async () => {
+  if (!entryText.value) return;
+  await $trpcClient.post.create.mutate({
+    content: entryText.value,
+    imgUrl: preview.value ?? null,
+    title: titleText.value,
+  });
+  //reset the fields
+  entryText.value = "";
+  preview.value = null;
 };
-
-// const addEntry = () => {
-//   console.log("Blog Entry Text:", entryText.value);
-//   console.log("Image Preview Data URL:", preview.value);
-//   //send this data to supabase / api here
-// };
 </script>
