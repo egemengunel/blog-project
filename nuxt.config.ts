@@ -34,6 +34,11 @@ export default defineNuxtConfig({
         target: 'node20',
       },
     },
+    vercel: {
+      functions: {
+        maxDuration: 30,
+      },
+    },
   },
 
   vite: {
