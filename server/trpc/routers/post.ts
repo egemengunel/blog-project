@@ -17,14 +17,33 @@ export const postRouter = router({
                     content: input.content,
                     imgUrl: input.imgUrl ?? null,
                     title: input.title
-            },
-            }) 
+                },
+            })
         }),
-      getAll: publicProcedure.query(async () => {
-                return prisma.post.findMany({
-                    orderBy: {
-                        createdAt: 'desc',
-                    },
-                })
-            })  
-})
+    getAll: publicProcedure
+        .input(
+            z.object({
+                limit: z.number().min(1).max(100).nullish(),
+            }).nullish()
+        )
+        
+        .query(async ({ input }) => {
+            
+            return prisma.post.findMany({
+                orderBy: {
+                    createdAt: 'desc',
+                },
+                take: input?.limit ?? undefined,
+            });
+        }),
+    
+    getById: publicProcedure
+        .input(z.number().int().positive('Invalid UUID Format'))
+        .query(async ({ input }) => {
+            const post = await prisma.post.findUnique({
+                where: { id: input },
+            });
+            return post;
+        }),
+
+});
