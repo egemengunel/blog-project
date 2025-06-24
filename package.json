@@ -19,7 +19,6 @@
     "@tanstack/vue-query": "^5.81.2",
     "@trpc/client": "^11.4.2",
     "@trpc/server": "^11.4.2",
-    "better-sqlite3": "^11.10.0",
     "eslint": "^9.29.0",
     "nuxt": "^3.17.5",
     "prisma": "^6.10.1",
