@@ -1,0 +1,1 @@
+import{_ as o,c as r,o as t,y as s}from"./BKCbIHqA.js";import"@prisma/client";const c={};function n(e,a){return t(),r("li",null,[s(e.$slots,"default")])}const f=o(c,[["render",n]]);export{f as default};
