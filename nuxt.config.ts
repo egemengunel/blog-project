@@ -28,15 +28,9 @@ export default defineNuxtConfig({
         'prisma',
       ],
     },
-    preset: 'vercel',
     esbuild: {
       options: {
         target: 'node20',
-      },
-    },
-    vercel: {
-      functions: {
-        maxDuration: 30,
       },
     },
   },
