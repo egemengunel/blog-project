@@ -24,3 +24,8 @@ logs
 !.env.example
 
 /generated/prisma
+
+# Nuxt project files
+.vercel
+
+# VSCode

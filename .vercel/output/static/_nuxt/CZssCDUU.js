@@ -1,1 +1,0 @@
-import{_ as o,c as t,o as r,y as c}from"./BKCbIHqA.js";import"@prisma/client";const s={};function n(e,l){return r(),t("blockquote",null,[c(e.$slots,"default")])}const f=o(s,[["render",n]]);export{f as default};

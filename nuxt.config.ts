@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     },
     esbuild: {
       options: {
-        target: 'node20',
+        target: 'node18',
       },
     },
   },
