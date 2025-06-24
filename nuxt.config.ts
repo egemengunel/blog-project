@@ -28,6 +28,7 @@ export default defineNuxtConfig({
         'prisma',
       ],
     },
+    preset: 'vercel',
     esbuild: {
       options: {
         target: 'node18',
