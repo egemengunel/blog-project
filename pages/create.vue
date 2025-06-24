@@ -74,6 +74,9 @@
 <script lang="ts" setup>
 import { useNuxtApp } from "#app";
 
+const selectedFile = ref<File | null>(null);
+const { $trpcClient, $supabase } = useNuxtApp();
+
 const isSubmitting = ref(false);
 const entryText = ref("");
 const titleText = ref("");
@@ -81,40 +84,90 @@ const preview = ref<string | null>(null);
 const blogContent = ref<HTMLTextAreaElement | null>(null);
 const titleContent = ref<HTMLTextAreaElement | null>(null);
 
-const { $trpcClient } = useNuxtApp();
-
 const onFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
   const file = target.files?.[0];
   if (file) {
+    selectedFile.value = file;
     const reader = new FileReader();
     reader.onload = (e) => {
       preview.value = e.target?.result as string;
     };
     reader.readAsDataURL(file);
   } else {
+    selectedFile.value = null;
     preview.value = null;
   }
 };
 
 const addEntry = async () => {
-  if (isSubmitting.value || !entryText.value) return;
+  if (isSubmitting.value || !entryText.value || !titleText.value) {
+    alert("Please fill the title and the content");
+    isSubmitting.value = false;
+    return;
+  }
+
   isSubmitting.value = true;
+  let imageUrl: string | null = null;
+  if (selectedFile.value) {
+    //generate a unique name for subapase
+    try {
+      const fileExtension = selectedFile.value.name.split(".").pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 8)}.${fileExtension}`;
+      const filePath = `public/${fileName}`;
+
+      //actual imageupload
+      const { data: uploadData, error: uploadError } = await $supabase.storage
+        .from("blog-images")
+        .upload(filePath, selectedFile.value, {
+          cacheControl: "3600",
+          upsert: false,
+        });
+      if (uploadError) {
+        throw uploadError;
+      }
+      const { data: publicUrlData } = $supabase.storage
+        .from("blog-images")
+        .getPublicUrl(uploadData.path);
+
+      imageUrl = publicUrlData.publicUrl;
+      console.log("Image uploaded to Supabase Storage at:", imageUrl);
+    } catch (uploadError: unknown) {
+      console.error("failed to upload image to supabse storage", uploadError);
+      const errorMessage =
+        (uploadError as Error)?.message || "Unknown error during img upload";
+      alert(`Failed to upload image ${errorMessage}`);
+      isSubmitting.value = false;
+      return;
+    }
+  }
+
   try {
     await $trpcClient.post.create.mutate({
       content: entryText.value,
-      imgUrl: preview.value ?? null,
+      imgUrl: imageUrl,
       title: titleText.value,
     });
-    //reset the fields
+
     entryText.value = "";
+    titleText.value = "";
     preview.value = null;
-    alert("Blog post added");
-  } catch (error) {
+    selectedFile.value = null;
+    alert("Blog Post Added");
+    navigateTo("/");
+  } catch (error: unknown) {
     console.error("Failed to create post:", error);
+    const errorMessage =
+      (error as Error)?.message || "Unknown error during post creation.";
+    alert(`Failed to create post: ${errorMessage}`);
   } finally {
     isSubmitting.value = false;
-    navigateTo("/");
   }
 };
 </script>
+
+// try { // await $trpcClient.post.create.mutate({ // content: entryText.value,
+// imgUrl: preview.value ?? null, // title: titleText.value, // }); // //reset
+the fields // entryText.value = ""; // preview.value = null; // alert("Blog post
+added"); // } catch (error) { // console.error("Failed to create post:", error);
+// } finally { // isSubmitting.value = false; // navigateTo("/"); // }
