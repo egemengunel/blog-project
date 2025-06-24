@@ -27,19 +27,20 @@ export default defineNuxtConfig({
         '@prisma/client',
         'prisma',
       ],
-      // Ensure 'trace' is NOT present here if it was causing a type error.
-      // If it was not causing a type error for you, and you want to ensure tracing,
-      // you could try including specific paths like 'prisma/libquery_engine-*'.
-      // But for now, let's remove it to eliminate the TypeScript error you specifically showed.
     },
-    preset: 'vercel', // Even for local build, this sets the serverless output structure
+    preset: 'vercel',
+    esbuild: {
+      options: {
+        target: 'node20',
+      },
+    },
   },
 
   vite: {
     build: {
       rollupOptions: {
         external: [
-          '@prisma/client', // This is the key line to prevent client-side bundling of Prisma
+          '@prisma/client',
         ],
       },
     },
@@ -50,6 +51,6 @@ export default defineNuxtConfig({
   },
 
   experimental: {
-    componentIslands: true
+    componentIslands: true,
   },
 });
